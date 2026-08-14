@@ -188,7 +188,7 @@ export function TasksPage() {
       label: "Title",
       sortable: true,
       render: (task) => (
-        <Typography variant="body2" fontWeight={600}>
+        <Typography variant="body2" fontWeight={700} color="text.primary" sx={{ "&:hover": { color: "primary.main" } }}>
           {task.title}
         </Typography>
       ),
@@ -196,7 +196,11 @@ export function TasksPage() {
     {
       key: "assignee",
       label: "Assignee",
-      render: (task) => task.assignee?.name ?? "Unassigned",
+      render: (task) => (
+        <Typography variant="body2" color={task.assignee ? "text.primary" : "text.disabled"}>
+          {task.assignee?.name ?? "Unassigned"}
+        </Typography>
+      ),
     },
     {
       key: "priority",
@@ -335,7 +339,18 @@ export function TasksPage() {
           onChange={handleAssignedToMeToggle}
           disabled={!currentUserId}
           size="small"
-          sx={{ height: 40 }}
+          sx={{
+            height: 40,
+            borderRadius: 999,
+            px: 2,
+            textTransform: "none",
+            fontWeight: 600,
+            "&.Mui-selected": {
+              bgcolor: "primary.main",
+              color: "primary.contrastText",
+              "&:hover": { bgcolor: "primary.dark" },
+            },
+          }}
         >
           <PersonOutlineOutlinedIcon fontSize="small" sx={{ mr: 0.5 }} />
           Assigned to me

@@ -121,10 +121,10 @@ export function TaskDetailPage() {
         </Button>
       </Box>
 
-      <Paper variant="outlined" sx={{ p: 3 }}>
+      <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 }, borderRadius: 3 }}>
         <Box className="flex items-start justify-between flex-wrap gap-3">
           <Box>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom fontWeight={800}>
               {task.title}
             </Typography>
             <Stack direction="row" spacing={1}>
@@ -135,13 +135,13 @@ export function TaskDetailPage() {
           </Box>
           <Stack direction="row" spacing={1}>
             <Tooltip title="Edit task">
-              <IconButton onClick={() => setEditOpen(true)}>
-                <EditOutlinedIcon />
+              <IconButton onClick={() => setEditOpen(true)} sx={{ bgcolor: "action.hover" }}>
+                <EditOutlinedIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Tooltip title="Delete task">
-              <IconButton onClick={() => setDeleteOpen(true)} color="error">
-                <DeleteOutlineIcon />
+              <IconButton onClick={() => setDeleteOpen(true)} color="error" sx={{ bgcolor: "action.hover" }}>
+                <DeleteOutlineIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           </Stack>
@@ -178,8 +178,8 @@ export function TaskDetailPage() {
         </Field>
       </Paper>
 
-      <Paper variant="outlined" sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>
+      <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 }, borderRadius: 3 }}>
+        <Typography variant="h6" gutterBottom fontWeight={700}>
           Comments
         </Typography>
         <TaskCommentsPanel taskId={task.id} />

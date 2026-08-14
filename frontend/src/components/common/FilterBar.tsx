@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
@@ -43,25 +44,27 @@ export function FilterBar({
   }, [debouncedValue]);
 
   return (
-    <Box className="flex flex-wrap items-center gap-3 mb-4">
-      <TextField
-        size="small"
-        placeholder={searchPlaceholder}
-        value={localValue}
-        onChange={(e) => setLocalValue(e.target.value)}
-        sx={{ minWidth: 240 }}
-        slotProps={{
-          input: {
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon fontSize="small" />
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
-      {children}
-    </Box>
+    <Paper variant="outlined" sx={{ p: 2, borderRadius: 3 }}>
+      <Box className="flex flex-wrap items-center gap-3">
+        <TextField
+          size="small"
+          placeholder={searchPlaceholder}
+          value={localValue}
+          onChange={(e) => setLocalValue(e.target.value)}
+          sx={{ minWidth: 260, bgcolor: "background.default" }}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon fontSize="small" color="action" />
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+        {children}
+      </Box>
+    </Paper>
   );
 }
 

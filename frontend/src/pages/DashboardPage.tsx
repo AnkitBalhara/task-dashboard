@@ -20,6 +20,7 @@ import EventBusyOutlinedIcon from "@mui/icons-material/EventBusyOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import type { SvgIconComponent } from "@mui/icons-material";
+import { alpha } from "@mui/material/styles";
 import { useCurrentUser } from "../context/CurrentUserContext";
 import useDashboardStats from "../hooks/useDashboardStats";
 import useExternalUsers from "../hooks/useExternalUsers";
@@ -43,38 +44,49 @@ interface StatCardConfig {
 }
 
 const STAT_CARDS: StatCardConfig[] = [
-  { key: "total", label: "Total Tasks", icon: AssignmentOutlinedIcon, color: "#2563eb" },
+  { key: "total", label: "Total Tasks", icon: AssignmentOutlinedIcon, color: "#4f46e5" },
   { key: "pending", label: "Pending", icon: HourglassEmptyOutlinedIcon, color: "#64748b" },
   { key: "inProgress", label: "In Progress", icon: AutorenewOutlinedIcon, color: "#0284c7" },
   { key: "completed", label: "Completed", icon: CheckCircleOutlineIcon, color: "#16a34a" },
   { key: "blocked", label: "Blocked", icon: BlockOutlinedIcon, color: "#dc2626" },
   { key: "overdue", label: "Overdue", icon: EventBusyOutlinedIcon, color: "#d97706" },
-  { key: "assignedToMe", label: "Assigned to Me", icon: PersonOutlineOutlinedIcon, color: "#7c3aed" },
+  { key: "assignedToMe", label: "Assigned to Me", icon: PersonOutlineOutlinedIcon, color: "#a855f7" },
 ];
 
 function StatCard({ config, value, loading }: { config: StatCardConfig; value?: number; loading: boolean }) {
   const Icon = config.icon;
   return (
-    <Card variant="outlined" className="h-full">
-      <CardContent>
+    <Card
+      className="h-full"
+      sx={{
+        position: "relative",
+        overflow: "hidden",
+        "&:hover": {
+          transform: "translateY(-3px)",
+          boxShadow: `0 12px 28px ${alpha(config.color, 0.18)}`,
+        },
+      }}
+    >
+      <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, bgcolor: config.color }} />
+      <CardContent sx={{ pt: 2.75 }}>
         <Box className="flex items-start justify-between">
           <Box>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+            <Typography variant="body2" color="text.secondary" fontWeight={600} gutterBottom>
               {config.label}
             </Typography>
             {loading ? (
-              <Skeleton variant="text" width={60} height={40} />
+              <Skeleton variant="text" width={60} height={44} />
             ) : (
               <Typography variant="h4">{value ?? 0}</Typography>
             )}
           </Box>
           <Box
             sx={{
-              bgcolor: `${config.color}1a`,
+              background: `linear-gradient(135deg, ${alpha(config.color, 0.18)}, ${alpha(config.color, 0.08)})`,
               color: config.color,
-              borderRadius: "50%",
-              width: 44,
-              height: 44,
+              borderRadius: 3,
+              width: 46,
+              height: 46,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -96,7 +108,7 @@ export function DashboardPage() {
   const isLoading = loading || userLoading;
 
   return (
-    <Box className="flex flex-col gap-4">
+    <Box className="flex flex-col gap-5">
       <Box>
         <Typography variant="h4" gutterBottom>
           Dashboard
@@ -124,10 +136,26 @@ export function DashboardPage() {
         ))}
       </Box>
 
-      <Card variant="outlined">
+      <Card>
         <CardHeader
-          avatar={<PublicOutlinedIcon color="action" />}
+          avatar={
+            <Box
+              sx={{
+                width: 38,
+                height: 38,
+                borderRadius: 2.5,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: (theme) => alpha(theme.palette.info.main, 0.12),
+                color: "info.main",
+              }}
+            >
+              <PublicOutlinedIcon fontSize="small" />
+            </Box>
+          }
           title="Team Directory"
+          titleTypographyProps={{ fontWeight: 700 }}
           subheader="Live data from a public external API (JSONPlaceholder) — demonstrates third-party API integration."
         />
         <Divider />
@@ -161,10 +189,13 @@ export function DashboardPage() {
                   {index > 0 && <Divider component="li" />}
                   <ListItem>
                     <ListItemAvatar>
-                      <Avatar>{initials(user.name)}</Avatar>
+                      <Avatar sx={{ bgcolor: (theme) => alpha(theme.palette.secondary.main, 0.14), color: "secondary.main", fontWeight: 700 }}>
+                        {initials(user.name)}
+                      </Avatar>
                     </ListItemAvatar>
                     <ListItemText
                       primary={user.name}
+                      primaryTypographyProps={{ fontWeight: 600 }}
                       secondary={`${user.email}${user.company ? ` · ${user.company}` : ""}`}
                     />
                   </ListItem>

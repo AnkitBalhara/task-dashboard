@@ -7,12 +7,13 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
+import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ChecklistOutlinedIcon from "@mui/icons-material/ChecklistOutlined";
+import SpaceDashboardRoundedIcon from "@mui/icons-material/SpaceDashboardRounded";
 import Container from "@mui/material/Container";
+import { alpha } from "@mui/material/styles";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
 interface NavLinkProps {
@@ -23,7 +24,7 @@ interface NavLinkProps {
 
 function NavLink({ to, label, icon }: NavLinkProps) {
   const location = useLocation();
-  const isActive = location.pathname === to;
+  const isActive = location.pathname === to || (to !== "/" && location.pathname.startsWith(to));
 
   return (
     <Button
@@ -32,11 +33,14 @@ function NavLink({ to, label, icon }: NavLinkProps) {
       startIcon={icon}
       color="inherit"
       sx={{
-        opacity: isActive ? 1 : 0.75,
+        px: 2,
+        py: 1,
+        borderRadius: 999,
         fontWeight: isActive ? 700 : 500,
-        borderBottom: isActive ? "2px solid" : "2px solid transparent",
-        borderRadius: 0,
-        py: 2,
+        bgcolor: isActive ? "rgba(255,255,255,0.18)" : "transparent",
+        "&:hover": {
+          bgcolor: isActive ? "rgba(255,255,255,0.24)" : "rgba(255,255,255,0.1)",
+        },
       }}
     >
       {label}
@@ -44,8 +48,17 @@ function NavLink({ to, label, icon }: NavLinkProps) {
   );
 }
 
+function initials(name: string): string {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
+
 function CurrentUserSwitcher() {
-  const { users, currentUserId, setCurrentUserId, loading } = useCurrentUser();
+  const { users, currentUser, currentUserId, setCurrentUserId, loading } = useCurrentUser();
 
   if (loading) {
     return <CircularProgress size={20} sx={{ color: "white" }} />;
@@ -64,19 +77,29 @@ function CurrentUserSwitcher() {
   };
 
   return (
-    <FormControl size="small" sx={{ minWidth: 200 }}>
-      <InputLabel id="current-user-label" sx={{ color: "rgba(255,255,255,0.8)" }}>
-        Acting as
-      </InputLabel>
+    <Box
+      className="flex items-center gap-2"
+      sx={{
+        bgcolor: "rgba(255,255,255,0.14)",
+        borderRadius: 999,
+        pl: 0.75,
+        pr: 1.5,
+        py: 0.5,
+        border: "1px solid rgba(255,255,255,0.2)",
+      }}
+    >
+      <Avatar sx={{ width: 28, height: 28, fontSize: 13, bgcolor: "rgba(255,255,255,0.9)", color: "primary.dark" }}>
+        {currentUser ? initials(currentUser.name) : "?"}
+      </Avatar>
       <Select
-        labelId="current-user-label"
-        label="Acting as"
+        variant="standard"
+        disableUnderline
         value={currentUserId ?? ""}
         onChange={handleChange}
         sx={{
           color: "white",
-          ".MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.4)" },
-          "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.7)" },
+          fontWeight: 600,
+          fontSize: 14,
           ".MuiSvgIcon-root": { color: "white" },
         }}
       >
@@ -86,7 +109,7 @@ function CurrentUserSwitcher() {
           </MenuItem>
         ))}
       </Select>
-    </FormControl>
+    </Box>
   );
 }
 
@@ -97,15 +120,34 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   return (
     <Box className="flex flex-col min-h-screen" sx={{ bgcolor: "background.default" }}>
-      <AppBar position="sticky" color="primary" enableColorOnDark>
-        <Toolbar className="gap-4">
-          <Typography variant="h6" component="div" sx={{ mr: 2, whiteSpace: "nowrap" }}>
-            Task Dashboard
-          </Typography>
-          <Box className="flex flex-1 items-stretch">
-            <NavLink to="/" label="Dashboard" icon={<DashboardOutlinedIcon />} />
-            <NavLink to="/tasks" label="Tasks" icon={<ChecklistOutlinedIcon />} />
+      <AppBar position="sticky" enableColorOnDark elevation={0}>
+        <Toolbar className="gap-3" sx={{ minHeight: 68 }}>
+          <Box className="flex items-center gap-2" sx={{ mr: 3 }}>
+            <Box
+              sx={{
+                width: 36,
+                height: 36,
+                borderRadius: 2.5,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: alpha("#ffffff", 0.16),
+                border: "1px solid rgba(255,255,255,0.25)",
+              }}
+            >
+              <SpaceDashboardRoundedIcon sx={{ fontSize: 20 }} />
+            </Box>
+            <Typography variant="h6" component="div" sx={{ whiteSpace: "nowrap", fontWeight: 800, letterSpacing: "-0.01em" }}>
+              Task Dashboard
+            </Typography>
           </Box>
+          <Box className="flex flex-1 items-center gap-1">
+            <NavLink to="/" label="Dashboard" icon={<DashboardOutlinedIcon fontSize="small" />} />
+            <NavLink to="/tasks" label="Tasks" icon={<ChecklistOutlinedIcon fontSize="small" />} />
+          </Box>
+          <Typography variant="caption" sx={{ opacity: 0.75, mr: 0.5, display: { xs: "none", sm: "block" } }}>
+            Acting as
+          </Typography>
           <CurrentUserSwitcher />
         </Toolbar>
       </AppBar>
