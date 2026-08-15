@@ -161,8 +161,24 @@ Zod validation failures return `400` with field-level `details`. Missing resourc
 
 The parts of this codebase meant to outlive this specific app:
 
+
 - **`packages/shared-types`** — the DTO/enum contract both sides import, instead of duplicating types or trusting them to stay in sync by convention.
 - **Backend module pattern** (`modules/<resource>/{routes,controller,service,schema}.ts`) — a new resource is a copy of one folder with the Prisma model/zod schema swapped in. `middleware/` and `utils/` are already resource-agnostic.
 - **`components/common/DataTable`** — a generic, column-config-driven table with server-driven sort/pagination and zero Task-specific logic; any future list page reuses it with different columns.
 - **`components/common/{FilterBar, ConfirmDialog, EmptyState, StatusBadge, PriorityBadge}`** — generic UI primitives.
 - **`api/` + `hooks/` pattern** — one thin axios module and one hook per resource, consistent enough that a new resource's client/hook pair is a copy-paste-and-rename job.
+
+
+
+
+Preview :
+<img width="1918" height="905" alt="image" src="https://github.com/user-attachments/assets/5c8c917f-e530-4776-aa3b-2216184aa1b1" />
+
+<img width="1915" height="907" alt="image" src="https://github.com/user-attachments/assets/c5a9eb53-3f79-4074-b1c1-e81fd1694756" />
+
+<img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/527688f8-09fa-424a-b117-c9421a337af7" />
+
+<img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/7ca86912-7bbe-40b6-b833-2478c15ba84e" />
+
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/6d330cef-12dc-4f92-a417-759675178045" />
+
