@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import externalApi from "../api/externalApi";
-import type { ExternalUser } from "../types";
+import externalApi from "@api/externalApi";
+import type { ExternalUser } from "@types";
 
 interface UseExternalUsersResult {
   users: ExternalUser[];

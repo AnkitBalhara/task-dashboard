@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import tasksApi from "../api/tasksApi";
-import type { PaginationMeta, Task, TaskListQuery } from "../types";
+import tasksApi from "@api/tasksApi";
+import type { PaginationMeta, Task, TaskListQuery } from "@types";
 
 interface UseTasksResult {
   tasks: Task[];

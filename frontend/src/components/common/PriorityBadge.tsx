@@ -1,5 +1,5 @@
 import Chip, { ChipProps } from "@mui/material/Chip";
-import type { TaskPriority } from "../../types";
+import type { TaskPriority } from "@types";
 
 const PRIORITY_LABELS: Record<TaskPriority, string> = {
   LOW: "Low",

@@ -15,13 +15,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-import StatusBadge from "../components/common/StatusBadge";
-import PriorityBadge from "../components/common/PriorityBadge";
-import ConfirmDialog from "../components/common/ConfirmDialog";
-import TaskFormDialog from "../components/tasks/TaskFormDialog";
-import TaskCommentsPanel from "../components/tasks/TaskCommentsPanel";
-import tasksApi from "../api/tasksApi";
-import type { Task } from "../types";
+import StatusBadge from "@components/common/StatusBadge";
+import PriorityBadge from "@components/common/PriorityBadge";
+import ConfirmDialog from "@components/common/ConfirmDialog";
+import TaskFormDialog from "@components/tasks/TaskFormDialog";
+import TaskCommentsPanel from "@components/tasks/TaskCommentsPanel";
+import tasksApi from "@api/tasksApi";
+import type { Task } from "@types";
 
 function formatDateTime(value: string | null): string {
   if (!value) return "—";

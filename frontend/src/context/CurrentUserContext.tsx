@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-import usersApi from "../api/usersApi";
-import type { User } from "../types";
+import usersApi from "@api/usersApi";
+import type { User } from "@types";
 
 const STORAGE_KEY = "task-dashboard:currentUserId";
 

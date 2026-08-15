@@ -23,24 +23,24 @@ async function main(): Promise<void> {
   // or blow up on the unique constraint.
   const [alice, bob, carol, david] = await Promise.all([
     prisma.user.upsert({
-      where: { email: "alice.johnson@taskdash.dev" },
+      where: { email: "ram.balhara@taskdash.dev" },
       update: {},
-      create: { name: "Alice Johnson", email: "alice.johnson@taskdash.dev", role: UserRole.ADMIN },
+      create: { name: "Ram Balhara", email: "ram.balhara@taskdash.dev", role: UserRole.ADMIN },
     }),
     prisma.user.upsert({
-      where: { email: "bob.martinez@taskdash.dev" },
+      where: { email: "priya.sharma@taskdash.dev" },
       update: {},
-      create: { name: "Bob Martinez", email: "bob.martinez@taskdash.dev", role: UserRole.MEMBER },
+      create: { name: "Priya Sharma", email: "priya.sharma@taskdash.dev", role: UserRole.MEMBER },
     }),
     prisma.user.upsert({
-      where: { email: "carol.nguyen@taskdash.dev" },
+      where: { email: "ananya.iyer@taskdash.dev" },
       update: {},
-      create: { name: "Carol Nguyen", email: "carol.nguyen@taskdash.dev", role: UserRole.MEMBER },
+      create: { name: "Ananya Iyer", email: "ananya.iyer@taskdash.dev", role: UserRole.MEMBER },
     }),
     prisma.user.upsert({
-      where: { email: "david.kim@taskdash.dev" },
+      where: { email: "vikram.mehta@taskdash.dev" },
       update: {},
-      create: { name: "David Kim", email: "david.kim@taskdash.dev", role: UserRole.ADMIN },
+      create: { name: "Vikram Mehta", email: "vikram.mehta@taskdash.dev", role: UserRole.ADMIN },
     }),
   ]);
 

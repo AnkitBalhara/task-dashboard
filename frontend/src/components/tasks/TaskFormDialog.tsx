@@ -9,8 +9,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
-import tasksApi from "../../api/tasksApi";
-import useUsers from "../../hooks/useUsers";
+import tasksApi from "@api/tasksApi";
+import useUsers from "@hooks/useUsers";
 import {
   TASK_PRIORITIES,
   TASK_STATUSES,
@@ -18,7 +18,7 @@ import {
   type Task,
   type TaskPriority,
   type TaskStatus,
-} from "../../types";
+} from "@types";
 
 interface TaskFormDialogProps {
   open: boolean;
