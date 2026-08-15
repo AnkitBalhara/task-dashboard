@@ -1,5 +1,5 @@
 import Chip, { ChipProps } from "@mui/material/Chip";
-import type { TaskStatus } from "../../types";
+import type { TaskStatus } from "@types";
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   PENDING: "Pending",

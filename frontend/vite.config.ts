@@ -8,6 +8,13 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@api": path.resolve(__dirname, "./src/api"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@context": path.resolve(__dirname, "./src/context"),
+      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
+      "@theme": path.resolve(__dirname, "./src/theme"),
+      "@types": path.resolve(__dirname, "./src/types"),
       // Point straight at the workspace package's TS source instead of its
       // compiled CJS `dist` output. Vite's esbuild transform handles the
       // source as plain ESM (same as any other project file), which avoids

@@ -7,7 +7,7 @@ import type {
   Task,
   TaskListQuery,
   UpdateTaskInput,
-} from "../types";
+} from "@types";
 
 export interface TaskListResult {
   data: Task[];

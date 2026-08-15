@@ -21,11 +21,11 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
-import { useCurrentUser } from "../context/CurrentUserContext";
-import useDashboardStats from "../hooks/useDashboardStats";
-import useExternalUsers from "../hooks/useExternalUsers";
-import EmptyState from "../components/common/EmptyState";
-import type { DashboardStats } from "../types";
+import { useCurrentUser } from "@context/CurrentUserContext";
+import useDashboardStats from "@hooks/useDashboardStats";
+import useExternalUsers from "@hooks/useExternalUsers";
+import EmptyState from "@components/common/EmptyState";
+import type { DashboardStats } from "@types";
 
 function initials(name: string): string {
   return name

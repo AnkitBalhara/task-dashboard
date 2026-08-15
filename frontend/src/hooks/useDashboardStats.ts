@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import dashboardApi from "../api/dashboardApi";
-import type { DashboardStats } from "../types";
+import dashboardApi from "@api/dashboardApi";
+import type { DashboardStats } from "@types";
 
 interface UseDashboardStatsResult {
   stats: DashboardStats | null;

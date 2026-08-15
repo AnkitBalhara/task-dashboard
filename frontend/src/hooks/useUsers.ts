@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import usersApi from "../api/usersApi";
-import type { User } from "../types";
+import usersApi from "@api/usersApi";
+import type { User } from "@types";
 
 interface UseUsersResult {
   users: User[];

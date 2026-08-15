@@ -1,5 +1,5 @@
 import apiClient from "./client";
-import type { ExternalUser } from "../types";
+import type { ExternalUser } from "@types";
 
 export const externalApi = {
   async getUsers(): Promise<ExternalUser[]> {

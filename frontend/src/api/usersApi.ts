@@ -1,5 +1,5 @@
 import apiClient from "./client";
-import type { CreateUserInput, User } from "../types";
+import type { CreateUserInput, User } from "@types";
 
 export const usersApi = {
   async getAll(): Promise<User[]> {

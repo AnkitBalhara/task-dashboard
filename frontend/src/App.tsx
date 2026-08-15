@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import AppLayout from "./components/layout/AppLayout";
-import DashboardPage from "./pages/DashboardPage";
-import TasksPage from "./pages/TasksPage";
-import TaskDetailPage from "./pages/TaskDetailPage";
+import AppLayout from "@components/layout/AppLayout";
+import DashboardPage from "@pages/DashboardPage";
+import TasksPage from "@pages/TasksPage";
+import TaskDetailPage from "@pages/TaskDetailPage";
 
 export function App() {
   return (

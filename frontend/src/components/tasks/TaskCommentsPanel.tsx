@@ -8,10 +8,10 @@ import Avatar from "@mui/material/Avatar";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
-import tasksApi from "../../api/tasksApi";
-import { useCurrentUser } from "../../context/CurrentUserContext";
-import type { Comment } from "../../types";
-import EmptyState from "../common/EmptyState";
+import tasksApi from "@api/tasksApi";
+import { useCurrentUser } from "@context/CurrentUserContext";
+import type { Comment } from "@types";
+import EmptyState from "@components/common/EmptyState";
 
 interface TaskCommentsPanelProps {
   taskId: string;

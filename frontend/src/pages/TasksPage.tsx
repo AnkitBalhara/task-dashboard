@@ -18,17 +18,17 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
-import FilterBar from "../components/common/FilterBar";
-import DataTable, { DataTableColumn } from "../components/common/DataTable";
-import StatusBadge from "../components/common/StatusBadge";
-import PriorityBadge from "../components/common/PriorityBadge";
-import ConfirmDialog from "../components/common/ConfirmDialog";
-import TaskFormDialog from "../components/tasks/TaskFormDialog";
-import TaskCommentsPanel from "../components/tasks/TaskCommentsPanel";
-import useTasks from "../hooks/useTasks";
-import useUsers from "../hooks/useUsers";
-import { useCurrentUser } from "../context/CurrentUserContext";
-import tasksApi from "../api/tasksApi";
+import FilterBar from "@components/common/FilterBar";
+import DataTable, { DataTableColumn } from "@components/common/DataTable";
+import StatusBadge from "@components/common/StatusBadge";
+import PriorityBadge from "@components/common/PriorityBadge";
+import ConfirmDialog from "@components/common/ConfirmDialog";
+import TaskFormDialog from "@components/tasks/TaskFormDialog";
+import TaskCommentsPanel from "@components/tasks/TaskCommentsPanel";
+import useTasks from "@hooks/useTasks";
+import useUsers from "@hooks/useUsers";
+import { useCurrentUser } from "@context/CurrentUserContext";
+import tasksApi from "@api/tasksApi";
 import {
   TASK_PRIORITIES,
   TASK_STATUSES,
@@ -37,7 +37,7 @@ import {
   type TaskListQuery,
   type TaskPriority,
   type TaskStatus,
-} from "../types";
+} from "@types";
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   PENDING: "Pending",
